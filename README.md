@@ -1,4 +1,4 @@
-# 🚀 Context Rocket V2: AI-Powered Context Preservation Engine
+# 🚀 Context Rocket: AI-Powered Context Preservation Engine
 
 **Context Rocket** is a premium, open-source browser extension designed to eliminate "Context Amnesia" during AI-assisted development. It intercepts live ChatGPT conversation transcripts directly from the browser context and orchestrates with a local FastAPI backend powered by **Google Gemini AI** to distill massive, noisy chat logs into high-density, structured technical JSON "Save Files" (detailing project state, tech stacks, core decisions, and immediate next steps).
 
@@ -6,14 +6,14 @@ Stop copy-pasting massive chat transcripts or starting from scratch. Capture you
 
 ---
 
-## ✨ New in V2.0 (The Enterprise & Multi-User Release)
+## ✨ Core Features (Enterprise & Multi-User Support)
 
-This release transforms Context Rocket into a fully scalable, production-ready context manager:
+Context Rocket is a fully scalable, production-ready context manager:
 
-*   **⚙️ Collapsible Settings Drawer:** Added a sleek, in-popup configuration panel allowing users to dynamically input their active backend/tunnel URL (`ngrok`) on-the-fly. No extension re-zipping or re-loading required!
+*   **⚙️ Collapsible Settings Drawer:** Open the popup, click the ⚙️ gear icon, and configure your active backend/tunnel URL (`ngrok`) on-the-fly. No extension re-zipping or re-loading required!
 *   **🔒 Device-Level Session Isolation:** Engineered dynamic device-identifying client headers (`x-client-id`) to automatically isolate concurrent users. You and your friends can share a single backend endpoint with zero state crossover or file overwriting.
 *   **🧠 High-Density Technical Snapshots:** Gemini AI intelligently structures raw chat transcripts into high-fidelity JSON arrays: `project_summary`, `tech_stack`, `key_decisions`, and `pending_tasks`.
-*   **💎 Premium Dark Slate Interface:** Redesigned Dark Mode UI with subtle glowing transitions, real-time connectivity indicators, active status dots, and an integrated copy-to-clipboard engine.
+*   **💎 Premium Dark Slate Interface:** Redesigned Dark Mode UI with subtle glowing transitions, active green/pulsing status indicators, and an enhanced one-click copy-to-clipboard function.
 
 ---
 
@@ -54,7 +54,7 @@ uvicorn main:app --reload --port 8000
 
 ## 📖 Usage Flow
 
-1.  **Capture:** Open any active chat on ChatGPT. The extension automatically detects and captures the conversation structure in the background.
+1.  **Capture:** Open any chat on ChatGPT. The extension automatically detects and captures the conversation structure in the background.
 2.  **Generate:** Open the Context Rocket popup—your status dot will turn green and read **"Context Captured"**. Click **"Generate AI Summary"**.
 3.  **Copy:** Once the summary is ready, click **"Copy Project Context"** to immediately copy the structured JSON representation to your clipboard.
 4.  **Paste:** Start a new AI thread, paste the clipboard data as your first prompt, and watch the AI resume the project exactly where you left off!
