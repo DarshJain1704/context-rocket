@@ -1,67 +1,71 @@
-# 🚀 Context Rocket V2: AI-Powered Session Persistence
+# 🚀 Context Rocket V2: AI-Powered Context Preservation Engine
 
-**Context Rocket** is a specialized browser extension designed to eliminate "Context Amnesia" in AI development. It intercepts ChatGPT conversations and uses **Google Gemini AI** to transform noisy chat logs into high-density technical "Save Files" (JSON).
+**Context Rocket** is a premium, open-source browser extension designed to eliminate "Context Amnesia" during AI-assisted development. It intercepts live ChatGPT conversation transcripts directly from the browser context and orchestrates with a local FastAPI backend powered by **Google Gemini AI** to distill massive, noisy chat logs into high-density, structured technical JSON "Save Files" (detailing project state, tech stacks, core decisions, and immediate next steps).
 
-> **Why Context Rocket?** Stop starting from scratch. Capture your architectural decisions, tech stacks, and progress in one click, and jumpstart your next AI session with full project awareness.
+Stop copy-pasting massive chat transcripts or starting from scratch. Capture your architectural decisions in one click, and jumpstart your next AI session with absolute project awareness!
 
 ---
 
-## ✨ New in V2.0: The AI Engine
-The V2 release transforms Context Rocket from a simple data interceptor into an intelligent context engine.
+## ✨ New in V2.0 (The Enterprise & Multi-User Release)
 
-*   **🧠 Gemini AI Integration:** Powered by the new `google-genai` SDK, leveraging Gemini 1.5/2.5 Flash for rapid, intelligent summarization.
-*   **⚡ On-Demand Generation:** A new UI flow that captures data silently and only triggers AI generation when you click, saving tokens and processing power.
-*   **📋 High-Density Save Files:** Generates structured JSON snapshots including `project_summary`, `tech_stack`, `key_decisions`, and `pending_tasks`.
-*   **💎 Premium UI:** A completely redesigned Dark Mode popup with real-time status indicators and a one-click "Copy to Clipboard" feature.
+This release transforms Context Rocket into a fully scalable, production-ready context manager:
+
+*   **⚙️ Collapsible Settings Drawer:** Added a sleek, in-popup configuration panel allowing users to dynamically input their active backend/tunnel URL (`ngrok`) on-the-fly. No extension re-zipping or re-loading required!
+*   **🔒 Device-Level Session Isolation:** Engineered dynamic device-identifying client headers (`x-client-id`) to automatically isolate concurrent users. You and your friends can share a single backend endpoint with zero state crossover or file overwriting.
+*   **🧠 High-Density Technical Snapshots:** Gemini AI intelligently structures raw chat transcripts into high-fidelity JSON arrays: `project_summary`, `tech_stack`, `key_decisions`, and `pending_tasks`.
+*   **💎 Premium Dark Slate Interface:** Redesigned Dark Mode UI with subtle glowing transitions, real-time connectivity indicators, active status dots, and an integrated copy-to-clipboard engine.
 
 ---
 
 ## 🛠️ Architecture
 
-1.  **Browser Extension:** Intercepts `backend-api/conversation` requests directly from the ChatGPT Main World.
-2.  **FastAPI Backend:** A Python service that cleans raw JSON, manages session state, and orchestrates the Gemini AI pipeline.
-3.  **Context Bridge:** Seamlessly transfers high-fidelity project state between different AI models and sessions.
+1.  **Browser Extension (`/extension`):** Injects a Main World hook into ChatGPT to intercept standard `backend-api/conversation` payloads, forwarding data to the content script using event messaging.
+2.  **FastAPI Backend Service (`/backend`):** A robust Python microservice that handles cleaning, compiles client-specific states, and bridges payloads with the Gemini SDK.
+3.  **Context Bridge:** Safely packs the parsed state into copy-pasteable prompts to feed context immediately into your next AI window.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Easy Installation Guide
 
-### 1. Backend Setup
+### 1. Install the Chrome Extension
+1.  Download and extract the **`context_rocket_extension.zip`** deliverable (or clone the repository).
+2.  Open Google Chrome and navigate to `chrome://extensions/`.
+3.  Toggle the **Developer Mode** switch in the top-right corner.
+4.  Click **Load Unpacked** in the top-left, and select the **`extension/`** folder of this project.
+
+### 2. Run the Backend Server
+Start the local processing pipeline:
 ```bash
+# Move to backend folder
 cd backend
-python -m venv venv
-source venv/bin/activate  # Mac/Linux
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Start the server
+uvicorn main:app --reload --port 8000
 ```
 
-### 2. Configure AI
-Create a `.env` file in the `/backend` folder:
-```env
-GEMINI_API_KEY=YOUR_FREE_API_KEY_HERE
-```
-
-### 3. Install Extension
-1.  Open Chrome and go to `chrome://extensions`.
-2.  Enable **Developer Mode** (top right).
-3.  Click **Load Unpacked** and select the root `context_rocket` folder.
+### 3. Connect and Go!
+1.  If you are running your server locally, open the extension popup, click the ⚙️ gear icon, enter `http://127.0.0.1:8000`, and click **Save Configuration**.
+2.  If you are sharing the extension with friends, expose your local port via `ngrok` (`ngrok http 8000`), copy the public forwarding address, and save it in the settings panel.
 
 ---
 
 ## 📖 Usage Flow
-1.  **Capture:** Open any chat on ChatGPT. The extension will silently capture the history.
-2.  **Analyze:** Open the Context Rocket popup and click **"Generate AI Summary"**.
-3.  **Transfer:** Click **"Copy Project Context"** and paste it as the first prompt in your next AI session.
+
+1.  **Capture:** Open any active chat on ChatGPT. The extension automatically detects and captures the conversation structure in the background.
+2.  **Generate:** Open the Context Rocket popup—your status dot will turn green and read **"Context Captured"**. Click **"Generate AI Summary"**.
+3.  **Copy:** Once the summary is ready, click **"Copy Project Context"** to immediately copy the structured JSON representation to your clipboard.
+4.  **Paste:** Start a new AI thread, paste the clipboard data as your first prompt, and watch the AI resume the project exactly where you left off!
 
 ---
 
-## 🛡️ Privacy & Security
-*   **Local Processing:** Your chat data is processed on your local machine and only sent to Google Gemini for summarization.
-*   **No Cloud Storage:** Context Rocket does not store your chats on any external servers (besides the Gemini API call).
+## 🔒 Privacy & Local Processing
+*   **Complete Privacy:** All raw conversation parsing and extraction happens locally on your computer.
+*   **No Cloud Databases:** Your session details are saved in isolated directories on your local drive and are never stored or tracked on any external databases.
 
 ---
-
-## 🤝 Contributing
-Context Rocket is an open-source project. We welcome contributions to support more AI platforms (Claude, Gemini Web, etc.) and more output formats.
 
 **Developed by Darsh Jain**  
 [GitHub Profile](https://github.com/DarshJain1704)
