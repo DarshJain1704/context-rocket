@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Context Rocket V2</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <span class="logo-icon">🚀</span>
+      <h1>Context Rocket</h1>
+      <button id="settings-toggle-btn" class="icon-btn" title="Settings">⚙️</button>
+    </div>
+
+    <!-- Settings Drawer (Collapsible) -->
+    <div id="settings-drawer" class="settings-card" style="display: none;">
+      <div class="input-group">
+        <label for="backend-url-input">Backend Server URL</label>
+        <input type="text" id="backend-url-input" placeholder="https://xxxx.ngrok-free.app">
+      </div>
+      <div class="client-id-info">
+        <span>Device ID:</span>
+        <code id="client-id-display">client_loading...</code>
+      </div>
+      <button id="save-settings-btn" class="secondary-btn">Save Configuration</button>
+    </div>
+
+    <div class="status-card">
+      <div id="summary-title" class="title">Waiting for chat...</div>
+      <div class="status-indicator">
+        <span id="status-dot" class="dot grey"></span>
+        <span id="status-text">Backend Offline</span>
+      </div>
+    </div>
+
+    <!-- State 1: Data Captured, ready to generate -->
+    <div class="action-section" id="generate-area" style="display: none;">
+      <button id="generate-btn" class="primary-btn">
+        <span class="icon">✨</span>
+        <span id="gen-btn-text">Generate AI Summary</span>
+      </button>
+      <p class="hint">Click to start AI analysis (saves tokens).</p>
+    </div>
+
+    <!-- State 2: Processing -->
+    <div id="processing-area" class="loading-state" style="display: none;">
+      <div class="spinner"></div>
+      <p>Gemini is thinking...</p>
+    </div>
+
+    <!-- State 3: Ready to Copy -->
+    <div class="action-section" id="copy-area" style="display: none;">
+      <button id="copy-btn" class="success-btn">
+        <span class="icon">📋</span>
+        <span id="copy-btn-text">Copy Project Context</span>
+      </button>
+      <p class="hint">Ready to paste into a new chat.</p>
+    </div>
+
+    <div id="idle-message" class="loading-state">
+      <p>Open a ChatGPT conversation to capture context.</p>
+    </div>
+
+    <div class="footer">
+      <span>V2.0.0</span>
+      <a href="https://github.com/DarshJain1704/context-rocket" target="_blank">GitHub</a>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
